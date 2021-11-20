@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<NumberTranslatorService>();
+builder.Services.AddSingleton<INumberTranslatorService, NumberTranslatorService>();
 
 var app = builder.Build();
 

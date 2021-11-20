@@ -1,6 +1,6 @@
 ﻿namespace Num2Words.Services
 {
-    public class NumberTranslatorService
+    public class NumberTranslatorService : INumberTranslatorService
     {
         public NumberTranslatorService()
         {
