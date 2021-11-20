@@ -1,0 +1,13 @@
+﻿@page "/"
+@inject NumberTranslatorService translator
+
+<PageTitle>Index</PageTitle>
+
+<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputNumber id="number" @bind-Value="model.Number" />
+
+    <button type="submit">Submit</button>
+</EditForm>
