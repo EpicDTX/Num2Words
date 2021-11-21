@@ -3,11 +3,31 @@
 
 <PageTitle>Index</PageTitle>
 
-<EditForm Model="@model" OnValidSubmit="@HandleValidSubmit">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+<div class="container">
+    <div class="index-background">
+        <div class="index-card">
+            <div class="text-center w-70 mx-auto">
+                <h3 class="pb-3">
+                    Welcome to Number Translator
+                </h3>
+                <h4 class="pb-1">
+                    Enter a number:
+                </h4>
+                <EditForm Model="@model" OnValidSubmit="@HandleValidSubmit" class="form pb-1">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
 
-    <InputNumber id="number" @bind-Value="model.Number" />
+                    <div class="flex flex-row">
+                        <InputNumber id="number" @bind-Value="model.Number" class="form-control" />
+                        <button type="submit" class="button">Submit</button>
+                    </div>
+                </EditForm>
 
-    <button type="submit">Submit</button>
-</EditForm>
+                @if(!String.IsNullOrEmpty(output))
+                {
+                    <h5 class="text-bold text-green pt-4 pb-2">"@output"</h5>    
+                }
+            </div>
+        </div>
+    </div>
+</div>
