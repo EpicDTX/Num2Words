@@ -111,19 +111,19 @@
                 var singles = number % 1000 % 100 % 10;
 
                 output = translator[thousands] + " " + translator[1000];
-                
 
+                if (hundreds > 0)
+                {
+                    output = output + " " + translator[hundreds] + " " + translator[100];
+                }
+
+                // For the values in the dictionary already (e.g. eleven, twelve, etc.)
                 if (number % 1000 % 100 < 20 && number % 1000 % 100 > 0)
                 {
                     output = output + " and " + translator[number % 100];
                 }
                 else
                 {
-                    if (hundreds > 0)
-                    {
-                        output = output + " " + translator[hundreds] + " " + translator[100];
-                    }
-
                     if (tens > 0)
                     {
                         output = output + " and " + translator[tens * 10];
