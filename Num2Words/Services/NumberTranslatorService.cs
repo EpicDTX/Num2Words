@@ -39,20 +39,24 @@
                 dollars = int.Parse(dollarsString);
 
                 var centsString = numberString.Split('.')[1];
+                if(centsString.Length == 1)
+                {
+                    centsString = centsString + "0";
+                }
                 cents = int.Parse(centsString);
             }
 
-            output = Translate(dollars) + " dollars";
+            output = TranslateDollars(dollars) + " dollars";
 
             if (cents >= 0)
             {
-                output = output + " and " + Translate(cents) + " cents";
+                output = output + " and " + TranslateCents(cents) + " cents";
             }
 
             return output;
         }
 
-        public string Translate(int number)
+        public string TranslateDollars(int number)
         {
             var output = "";
             if (number < 20)
@@ -64,7 +68,14 @@
                 var tens = number / 10;
                 var singles = number % 10;
 
-                output = translator[tens * 10] + "-" + translator[singles];
+                if (singles > 0)
+                {
+                    output = output + translator[tens * 10] + "-" + translator[singles];
+                }
+                else
+                {
+                    output = output + translator[tens * 10];
+                }
             }
             else if (number < 1000)
             {
@@ -74,15 +85,48 @@
 
                 output = translator[hundreds] + " " + translator[100] + " and ";
 
+
                 if (number % 100 < 20)
                 {
                     output = output + translator[number % 100];
                 }
                 else
                 {
+                    if (singles > 0)
+                    {
+                        output = output + translator[tens * 10] + "-" + translator[singles];
+                    }
+                    else
+                    {
+                        output = output + translator[tens * 10];
+                    }
+                }
+            }
+
+            return output;
+        }
+
+        public string TranslateCents(int number)
+        {
+            var output = "";
+
+            if (number < 20)
+            {
+                output = translator[number];
+            }
+            else if (number < 100)
+            {
+                var tens = number / 10;
+                var singles = number % 10;
+
+                if (singles > 0)
+                {
                     output = output + translator[tens * 10] + "-" + translator[singles];
                 }
-
+                else
+                {
+                    output = output + translator[tens * 10];
+                }
             }
 
             return output;
