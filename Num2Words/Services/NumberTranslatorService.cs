@@ -83,22 +83,55 @@
                 var tens = number % 100 / 10;
                 var singles = number % 10;
 
-                output = translator[hundreds] + " " + translator[100] + " and ";
+                output = translator[hundreds] + " " + translator[100];
 
-
-                if (number % 100 < 20)
+                // For the values in the dictionary already (e.g. eleven, twelve, etc.)
+                if (number % 100 < 20 && number % 10 > 0)
                 {
-                    output = output + translator[number % 100];
+                    output = output + " and " + translator[number % 100];
                 }
                 else
                 {
+                    if (tens > 0)
+                    {
+                        output = output + " and " + translator[tens * 10];
+                    }
+
                     if (singles > 0)
                     {
-                        output = output + translator[tens * 10] + "-" + translator[singles];
+                        output = output + "-" + translator[singles];
                     }
-                    else
+                }
+            }
+            else if (number < 10000)
+            {
+                var thousands = number / 1000;
+                var hundreds = number % 1000 / 100;
+                var tens = number % 1000 % 100 / 10;
+                var singles = number % 1000 % 100 % 10;
+
+                output = translator[thousands] + " " + translator[1000];
+                
+
+                if (number % 1000 % 100 < 20 && number % 1000 % 100 > 0)
+                {
+                    output = output + " and " + translator[number % 100];
+                }
+                else
+                {
+                    if (hundreds > 0)
                     {
-                        output = output + translator[tens * 10];
+                        output = output + " " + translator[hundreds] + " " + translator[100];
+                    }
+
+                    if (tens > 0)
+                    {
+                        output = output + " and " + translator[tens * 10];
+                    }
+
+                    if (singles > 0)
+                    {
+                        output = output + "-" + translator[singles];
                     }
                 }
             }
