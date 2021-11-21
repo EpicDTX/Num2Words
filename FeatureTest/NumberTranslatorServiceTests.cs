@@ -98,8 +98,8 @@ namespace FeatureTest
         [Test]
         public void TensWithCentsTest()
         {
-            double[] numbers = new double[] { 10.71, 20.66, 30.84, 40.55, 50.21, 60.46, 70.62, 80.79, 90.12 };
-            string[] words = new string[] { "ten dollars and seventy-one cents", "twenty dollars and sixty-six cents", "thirty dollars and eighty-four cents", "forty dollars and fifty-five cents", "fifty dollars and twenty-one cents", "sixty dollars and forty-six cents", "seventy dollars and sixty-two cents", "eighty dollars and seventy-nine cents", "ninety dollars and twelve cents" };
+            double[] numbers = new double[] { 10.71, 20.66, 30.84, 40.55, 50.21, 60.46, 70.62, 80.79, 90.12, 99.99 };
+            string[] words = new string[] { "ten dollars and seventy-one cents", "twenty dollars and sixty-six cents", "thirty dollars and eighty-four cents", "forty dollars and fifty-five cents", "fifty dollars and twenty-one cents", "sixty dollars and forty-six cents", "seventy dollars and sixty-two cents", "eighty dollars and seventy-nine cents", "ninety dollars and twelve cents", "ninety-nine dollars and ninety-nine cents" };
             for (int i = 0; i < numbers.Length; i++)
             {
                 var output = service.Convert((float)numbers[i]);
@@ -110,8 +110,8 @@ namespace FeatureTest
         [Test]
         public void HundredsWithCentsTest()
         {
-            double[] numbers = new double[] { 100.12, 294.79, 321.62, 464.46, 501.21, 673.55, 700.84, 837.66, 900.71};
-            string[] words = new string[] { "one hundred dollars and twelve cents", "two hundred and ninety-four dollars and seventy-nine cents", "three hundred and twenty-one dollars and sixty-two cents", "four hundred and sixty-four dollars and forty-six cents", "five hundred and one dollars and twenty-one cents", "six hundred and seventy-three dollars and fifty-five cents", "seven hundred dollars and eighty-four cents", "eight hundred and thirty-seven dollars and sixty-six cents", "nine hundred dollars and seventy-one cents" };
+            double[] numbers = new double[] { 100.12, 294.79, 321.62, 464.46, 501.21, 673.55, 700.84, 837.66, 900.71, 999.99};
+            string[] words = new string[] { "one hundred dollars and twelve cents", "two hundred and ninety-four dollars and seventy-nine cents", "three hundred and twenty-one dollars and sixty-two cents", "four hundred and sixty-four dollars and forty-six cents", "five hundred and one dollars and twenty-one cents", "six hundred and seventy-three dollars and fifty-five cents", "seven hundred dollars and eighty-four cents", "eight hundred and thirty-seven dollars and sixty-six cents", "nine hundred dollars and seventy-one cents", "nine hundred and ninety-nine dollars and ninety-nine cents" };
 
             for (int i = 0; i < numbers.Length; i++)
             {
