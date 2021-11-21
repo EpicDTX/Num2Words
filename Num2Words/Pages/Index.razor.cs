@@ -18,7 +18,6 @@ namespace Num2Words.Pages
             {
                 output = translator.Convert(model.Number.Value);
                 output = output.ToUpper();
-                output = "ONE HUNDRED AND TWENTY-THREE DOLLARS AND FORTY-FIVE CENTS";
             }
         }
     }

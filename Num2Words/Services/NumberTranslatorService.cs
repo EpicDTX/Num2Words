@@ -6,9 +6,86 @@
         {
         }
 
+        //private readonly Dictionary<string, string> translator = new()
+        //{
+        //    ["0"] = "zero", ["1"] = "one", ["2"] = "two", ["3"] = "three", ["4"] = "four",
+        //    ["5"] = "five", ["6"] = "six", ["7"] = "seven", ["8"] = "eight", ["9"] = "nine",
+        //    ["10"] = "ten", ["11"] = "eleven", ["12"] = "twelve", ["13"] = "thirteen", ["14"] = "fourteen",
+        //    ["15"] = "fifteen", ["16"] = "sixteen", ["17"] = "seventeen", ["18"] = "eighteen", ["19"] = "nineteen",
+        //    ["20"] = "twenty", ["30"] = "thirty", ["40"] = "forty", ["50"] = "fifty", ["60"] = "sixty",
+        //    ["70"] = "seventy", ["80"] = "eighty", ["90"] = "ninety", ["100"] = "hundred", ["1000"] = "thousand",
+        //};
+
+        private readonly Dictionary<int, string> translator = new()
+        {
+            [0] = "zero", [1] = "one", [2] = "two", [3] = "three", [4] = "four",
+            [5] = "five", [6] = "six", [7] = "seven", [8] = "eight", [9] = "nine",
+            [10] = "ten", [11] = "eleven", [12] = "twelve", [13] = "thirteen", [14] = "fourteen",
+            [15] = "fifteen", [16] = "sixteen", [17] = "seventeen", [18] = "eighteen", [19] = "nineteen",
+            [20] = "twenty", [30] = "thirty", [40] = "forty", [50] = "fifty", [60] = "sixty",
+            [70] = "seventy", [80] = "eighty", [90] = "ninety", [100] = "hundred", [1000] = "thousand",
+        };
+
         public string Convert(float number)
         {
-            return "";
+            var output = "";
+            var numberString = number.ToString();
+            var dollars = (int) number;
+            var cents = -1;
+
+            if (numberString.Contains("."))
+            {
+                var dollarsString = numberString.Split('.')[0];
+                dollars = int.Parse(dollarsString);
+
+                var centsString = numberString.Split('.')[1];
+                cents = int.Parse(centsString);
+            }
+
+            output = Translate(dollars) + " dollars";
+
+            if (cents >= 0)
+            {
+                output = output + " and " + Translate(cents) + " cents";
+            }
+
+            return output;
+        }
+
+        public string Translate(int number)
+        {
+            var output = "";
+            if (number < 20)
+            {
+                output = translator[number];
+            }
+            else if (number < 100)
+            {
+                var tens = number / 10;
+                var singles = number % 10;
+
+                output = translator[tens * 10] + "-" + translator[singles];
+            }
+            else if (number < 1000)
+            {
+                var hundreds = number / 100;
+                var tens = number % 100 / 10;
+                var singles = number % 10;
+
+                output = translator[hundreds] + " " + translator[100] + " and ";
+
+                if (number % 100 < 20)
+                {
+                    output = output + translator[number % 100];
+                }
+                else
+                {
+                    output = output + translator[tens * 10] + "-" + translator[singles];
+                }
+
+            }
+
+            return output;
         }
     }
 }
